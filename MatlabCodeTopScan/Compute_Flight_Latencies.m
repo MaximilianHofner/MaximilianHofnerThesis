@@ -97,12 +97,11 @@ for video= 1:3%3%numVideos% get all videos
             heig=height(loom_table)
             [rowstart ~]=find((start_frame == loom_table.FrameNum));
             [rowend ~]=find((end_frame == loom_table.FrameNum));
-            [x,y,lengths,distances,speeds,meanspeed,maxspeed,orientations,motions] = getTraceInfo2(loom_table,fps);
-            loom_table_before=SliceTrace(Table,end_frame_before,start_frame);
-            [Flight,Stimcontrol,Freeze,NoStimcontrol]=flight(loom_table,loom_table_before,maxspeed,speeds)
             hold on;
             Colours={'b','g','k','r'};
             [x,y,length,distances,speeds,meanspeed,maxspeed,orientations,motions, durationtrace] = getTraceInfo3(loom_table,x,y,fps)
+            loom_table_before=SliceTrace(Table,end_frame_before,start_frame);
+            [Flight,Stimcontrol,Freeze,NoStimcontrol]=flight(loom_table,loom_table_before,maxspeed,speeds)
             %% only plot flight and calculate value for every mouse at every trial 
             if Flight==1
                 Loom=plot(x(:,1), -y(:,1),Colours{k},'LineWidth',2)
